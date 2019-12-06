@@ -1,8 +1,10 @@
 import Service from './Service'
 
+import axios from 'axios'
+
 const PROTOCOL = process.env.NODE_ENV === 'production' ? 'https://' : 'http://'
 
-// const BASE_URL = PROTOCOL + window.location.host
+const BASE_URL = PROTOCOL + window.location.host
 
 function checkSlashes (url) {
   let finalSlash = url.substr(-1)
@@ -176,80 +178,6 @@ class EndPoint {
   }
 }
 
-addParams(url,params){
-
-  let paramsStr=''
-  let count=0
-  Object.entries(params).forEach(([key, value]) => {
-    let separator = count === 0 ? '?':'&'
-    if (typeof value=='object') {
-      value=JSON.stringify(value)
-    }
-    paramsStr = paramsStr + `${separator}${key}=${value}`
-    count++
-  });
-  return url + paramsStr
-}
-
-request (path, id = null, payload = null, extraparams=null) {
-  let fileDownload=false
-  let url = path
-  if (this.detail) url = url + id
-  if (this.name && this.pieces.length >= 3) url = url + this.pieces[2]
-
-
-  url = checkSlashes(url)
-  if (extraparams && extraparams.onlyUrl) {
-    if (this.method==='GET' && payload) return this.addParams(url,payload)
-    return url
-  }
-
-  if (extraparams) {
-    url = this.addParams(url,extraparams)
-  }
-  switch (this.method) {
-    case 'GET':
-      if (payload) {
-        // url = url.slice(0, -1)
-        return this.service.get(url, { params: payload })
-          .then(
-            response => this.manageResponse(response, this.defaultMode),
-            error => this.manageResponse(error, 'error')
-          )
-      } else {
-        return this.service.get(url)
-          .then(
-            response => this.manageResponse(response, this.defaultMode),
-            error => this.manageResponse(error, 'error')
-          )
-      }
-    case 'POST':
-      return this.service.post(url, payload)
-        .then(
-          response => this.manageResponse(response, this.defaultMode),
-          error => this.manageResponse(error, 'error')
-        )
-    case 'PATCH':
-      return this.service.patch(url, payload)
-        .then(
-          response => this.manageResponse(response, this.defaultMode),
-          error => this.manageResponse(error, 'error')
-        )
-    case 'PUT':
-      return this.service.put(url, payload)
-        .then(
-          response => this.manageResponse(response, this.defaultMode),
-          error => this.manageResponse(error, 'error')
-        )
-    case 'DELETE':
-      return this.service.delete(url)
-        .then(
-          response => this.manageResponse(response, this.defaultMode),
-          error => this.manageResponse(error, 'error')
-        )
-  }
-}
-
 class APIModel {
   constructor (model_map, api_route, name = null, csrf = null) {
     // service.interceptors.response.use(this.handleSuccess, this.handleError)
@@ -283,4 +211,4 @@ class APIModel {
   }
 }
 
-export { Service }
+export default APIModel

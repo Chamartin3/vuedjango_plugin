@@ -29,31 +29,31 @@ class Service {
     let msg
     switch (error.response.status) {
       case 400:
-        msg = { type: 401, message: 'Error en formulario', error: error }
+        msg = { type: 401, message: 'Form Error', error: error }
         break
       case 401:
-        msg = { type: 401, message: 'sin autorización', error: error }
+        msg = { type: 401, message: 'Unauthorized', error: error }
         break
       case 403:
-        msg = { type: 403, message: 'Prohibido', error: error }
+        msg = { type: 403, message: 'Forbiden', error: error }
         break
       case 405:
-        msg = { type: 405, message: 'Metodo no permitido', error: error }
+        msg = { type: 405, message: 'Method not allowed', error: error }
         break
       case 404:
-        msg = { type: 404, message: 'Metodo no permitido', error: error }
+        msg = { type: 404, message: 'Method not allowed', error: error }
         break
       case 500:
-        msg = { type: 500, message: 'Error en servidor', error: error }
+        msg = { type: 500, message: 'Server Error', error: error }
         break
       case 501:
         msg = { type: 501, message: 'Not Implemented', error: error }
         break
       case 508:
-        msg = { type: 508, message: 'Bucle infinito detectado', error: error }
+        msg = { type: 508, message: 'Infinite Loop', error: error }
         break
       default:
-        msg = { type: 0, message: 'Error no identificado', error: error }
+        msg = { type: 0, message: 'Unidentified Error', error: error }
         break
     }
     msg.data = error.response.data

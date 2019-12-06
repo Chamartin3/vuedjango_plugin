@@ -142,7 +142,6 @@ class Service {
       )
   }
 
-
   retrieve (id, mode = 'console', callback = null) {
     return this.service.get(`${this.jsonpath}${id}/`)
       .then(
@@ -170,6 +169,7 @@ class Service {
             response => this.manageResponse(response, mode, callback),
             error =>  this.manageResponse(error, 'error')
           )
+
       }else if (method==='post') {
         return this.service.request({
           method: 'POST',
@@ -185,5 +185,6 @@ class Service {
 
   }
 }
+
 
 export default Service

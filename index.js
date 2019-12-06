@@ -10,3 +10,18 @@ function genServices(list) {
 }
 
 export default genServices
+
+// Recieves a info object
+// {
+  // 'user'
+  // 'csrf_token':
+  // api_route
+  // navigation_paths
+  // 'autentication': {
+    // auth_path
+    // on_login
+    // on_logout
+  // }
+  // '_actions': actions
+
+// }

@@ -191,4 +191,65 @@ addParams(url,params){
   return url + paramsStr
 }
 
+request (path, id = null, payload = null, extraparams=null) {
+  let fileDownload=false
+  let url = path
+  if (this.detail) url = url + id
+  if (this.name && this.pieces.length >= 3) url = url + this.pieces[2]
+
+
+  url = checkSlashes(url)
+  if (extraparams && extraparams.onlyUrl) {
+    if (this.method==='GET' && payload) return this.addParams(url,payload)
+    return url
+  }
+
+  if (extraparams) {
+    url = this.addParams(url,extraparams)
+  }
+  switch (this.method) {
+    case 'GET':
+      if (payload) {
+        // url = url.slice(0, -1)
+        return this.service.get(url, { params: payload })
+          .then(
+            response => this.manageResponse(response, this.defaultMode),
+            error => this.manageResponse(error, 'error')
+          )
+      } else {
+        return this.service.get(url)
+          .then(
+            response => this.manageResponse(response, this.defaultMode),
+            error => this.manageResponse(error, 'error')
+          )
+      }
+    case 'POST':
+      return this.service.post(url, payload)
+        .then(
+          response => this.manageResponse(response, this.defaultMode),
+          error => this.manageResponse(error, 'error')
+        )
+    case 'PATCH':
+      return this.service.patch(url, payload)
+        .then(
+          response => this.manageResponse(response, this.defaultMode),
+          error => this.manageResponse(error, 'error')
+        )
+    case 'PUT':
+      return this.service.put(url, payload)
+        .then(
+          response => this.manageResponse(response, this.defaultMode),
+          error => this.manageResponse(error, 'error')
+        )
+    case 'DELETE':
+      return this.service.delete(url)
+        .then(
+          response => this.manageResponse(response, this.defaultMode),
+          error => this.manageResponse(error, 'error')
+        )
+  }
+}
+
+
+
 export { Service }

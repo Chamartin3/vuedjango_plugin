@@ -176,5 +176,19 @@ class EndPoint {
   }
 }
 
+addParams(url,params){
+
+  let paramsStr=''
+  let count=0
+  Object.entries(params).forEach(([key, value]) => {
+    let separator = count === 0 ? '?':'&'
+    if (typeof value=='object') {
+      value=JSON.stringify(value)
+    }
+    paramsStr = paramsStr + `${separator}${key}=${value}`
+    count++
+  });
+  return url + paramsStr
+}
 
 export { Service }

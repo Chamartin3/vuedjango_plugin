@@ -250,6 +250,37 @@ request (path, id = null, payload = null, extraparams=null) {
   }
 }
 
+class APIModel {
+  constructor (model_map, api_route, name = null, csrf = null) {
+    // service.interceptors.response.use(this.handleSuccess, this.handleError)
+    this.name = name === null ? '' : name
+    this.base_url = BASE_URL + '/' + api_route
+    // this.defaultMode = process.env.NODE_ENV === 'production' ? 'silent' : 'console'
+    let actions = {}
+    console.log(this.base_url)
+    for (var i = 0; i < model_map.length; i++) {
+      let endpoint = new EndPoint(this.base_url, model_map[i])
+      let viewsetnames = ['detail', 'list', 'delete', 'patch', 'put', 'post']
 
+      let name = endpoint.name
+      if (!endpoint.is_unique) name = endpoint.method.toLowerCase() + '_' + endpoint.name
+      if (viewsetnames.includes(endpoint.name)) name = endpoint.genericName
+      // if(this.actions.hasOwnProperty(name)){
+      //   let prev=this.actions['name']
+      //   name=endpoint.method.toLowerCase()+'_'+endpoint.name
+      //
+      // }
+      if (actions.hasOwnProperty(name)) {
+        let n = 1
+        while (actions.hasOwnProperty(name)) {
+          name = endpoint.genericName + n
+          n++
+        }
+      }
+      actions[name] = endpoint.wrapper
+      this[name] = endpoint.wrapper
+    }
+  }
+}
 
 export { Service }

@@ -1,0 +1,11 @@
+{
+  "name": "vuedjango",
+  "version": "1.0.0",
+  "description": "Javascript Mapper for a Django aplication that allows the conection with a FontEnd Framework, as VueJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chamartin3",
+  "license": "ISC"
+}

@@ -1,8 +1,21 @@
 import Vue from 'vue'
-// import Base from './BaseService'
 import Auth from './AutenticationService'
 import APIModel from './APIService'
 
+// Recieves a info object
+// {
+  // 'user'
+  // 'csrf_token':
+  // api_route
+  // navigation_paths
+  // 'autentication': {
+    // auth_path
+    // on_login
+    // on_logout
+  // }
+  // '_actions': actions
+
+// }
 Vue.prototype.$django = {...DJANGO_CONTEXT}
 
 function asembleURL(pieces, params=[]) {

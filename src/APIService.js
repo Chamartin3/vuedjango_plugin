@@ -34,7 +34,6 @@ class EndPoint {
       case 'GET':
         if (action.route.params.length > 0) this.genericName = 'detail'
         else this.genericName = 'list'
-        // this.name=this.genericName
         break
       case 'POST':
         this.genericName = 'create'

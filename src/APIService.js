@@ -9,8 +9,6 @@ function checkSlashes (url) {
   if (finalSlash != '/') {
     url = url + '/'
   }
-
-  // remove the double final slash
   let finalChars = url.substr(-2)
   if (finalChars.substr(1, 1) === finalChars.substr(0, 1)) {
     url = url.substr(0, url.length - 1)
@@ -18,7 +16,6 @@ function checkSlashes (url) {
 
   return url
 }
-
 class EndPoint {
   constructor (basepath, action) {
     this.method = action.type
@@ -54,7 +51,7 @@ class EndPoint {
         break
       case 'DELETE':
         this.genericName = 'destroy'
-        // this.name=this.genericName
+ 
         break
       default:
         this.genericName = action.name

@@ -38,16 +38,12 @@ class EndPoint {
         break
       case 'POST':
         this.genericName = 'create'
-        // this.name=this.genericName
         break
       case 'PATCH':
         this.genericName = 'partial_update'
-        // this.name=this.genericName
-
         break
       case 'PUT':
         this.genericName = 'update'
-        // this.name=this.genericName
         break
       case 'DELETE':
         this.genericName = 'destroy'
@@ -63,8 +59,6 @@ class EndPoint {
   processURL (route) {
     let pieces = route.pieces
     this.url = this.basepath + pieces[0]
-
-    // Adds de final slash if needed
 
     this.url = checkSlashes(this.url)
 

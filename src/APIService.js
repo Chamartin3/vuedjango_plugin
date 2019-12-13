@@ -67,8 +67,6 @@ class EndPoint {
     let pieces = route.pieces
     this.url = this.basepath + pieces[0]
 
-    // Adds de final slash if needed
-
     this.url = checkSlashes(this.url)
 
     this.detail = false

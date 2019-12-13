@@ -37,24 +37,19 @@ class EndPoint {
       case 'GET':
         if (action.route.params.length > 0) this.genericName = 'detail'
         else this.genericName = 'list'
-        // this.name=this.genericName
         break
       case 'POST':
         this.genericName = 'create'
-        // this.name=this.genericName
         break
       case 'PATCH':
         this.genericName = 'partial_update'
-        // this.name=this.genericName
-
         break
       case 'PUT':
         this.genericName = 'update'
-        // this.name=this.genericName
+
         break
       case 'DELETE':
         this.genericName = 'destroy'
-        // this.name=this.genericName
         break
       default:
         this.genericName = action.name

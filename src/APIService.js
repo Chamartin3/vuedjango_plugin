@@ -44,7 +44,6 @@ class EndPoint {
         break
       case 'PUT':
         this.genericName = 'update'
-
         break
       case 'DELETE':
         this.genericName = 'destroy'

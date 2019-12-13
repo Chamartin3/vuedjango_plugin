@@ -1,4 +1,4 @@
-import axios from 'axios'
+mport axios from 'axios'
 
 const PROTOCOL = process.env.NODE_ENV === 'production' ? 'https://' : 'http://'
 
@@ -9,6 +9,8 @@ function checkSlashes (url) {
   if (finalSlash != '/') {
     url = url + '/'
   }
+
+  // remove the double final slash
   let finalChars = url.substr(-2)
   if (finalChars.substr(1, 1) === finalChars.substr(0, 1)) {
     url = url.substr(0, url.length - 1)
@@ -16,6 +18,7 @@ function checkSlashes (url) {
 
   return url
 }
+
 class EndPoint {
   constructor (basepath, action) {
     this.method = action.type
@@ -34,19 +37,24 @@ class EndPoint {
       case 'GET':
         if (action.route.params.length > 0) this.genericName = 'detail'
         else this.genericName = 'list'
+        // this.name=this.genericName
         break
       case 'POST':
         this.genericName = 'create'
+        // this.name=this.genericName
         break
       case 'PATCH':
         this.genericName = 'partial_update'
+        // this.name=this.genericName
+
         break
       case 'PUT':
         this.genericName = 'update'
+        // this.name=this.genericName
         break
       case 'DELETE':
         this.genericName = 'destroy'
- 
+        // this.name=this.genericName
         break
       default:
         this.genericName = action.name
@@ -58,6 +66,8 @@ class EndPoint {
   processURL (route) {
     let pieces = route.pieces
     this.url = this.basepath + pieces[0]
+
+    // Adds de final slash if needed
 
     this.url = checkSlashes(this.url)
 
@@ -181,11 +191,6 @@ class APIModel {
       let name = endpoint.name
       if (!endpoint.is_unique) name = endpoint.method.toLowerCase() + '_' + endpoint.name
       if (viewsetnames.includes(endpoint.name)) name = endpoint.genericName
-      // if(this.actions.hasOwnProperty(name)){
-      //   let prev=this.actions['name']
-      //   name=endpoint.method.toLowerCase()+'_'+endpoint.name
-      //
-      // }
       if (actions.hasOwnProperty(name)) {
         let n = 1
         while (actions.hasOwnProperty(name)) {

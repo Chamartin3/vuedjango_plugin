@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Auth from './AutenticationService'
-import APIModel from './APIService'
+import APIModel from './APIModel'
 
 // Recieves a info object DJANGO_CONTEXT
 Vue.prototype.$django = {...DJANGO_CONTEXT}
@@ -16,10 +16,6 @@ Vue.prototype.$django = {...DJANGO_CONTEXT}
   // }
   // '_actions': actions
 // }
-
-
-
-
 
 function generateAPIModels() {
   let mappedActions=DJANGO_CONTEXT._actions

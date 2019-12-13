@@ -1,5 +1,5 @@
 import axios from 'axios'
-import APIService from './APIService'
+import APIService from './APIModel'
 
 class AuthService {
   constructor (token, loginpath, logoutpath='') {

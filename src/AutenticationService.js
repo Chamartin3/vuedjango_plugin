@@ -1,10 +1,5 @@
 import axios from 'axios'
-
-// const PROTOCOL = process.env.NODE_ENV === 'production' ? 'https://' : 'http://'
-//
-// const BASE_URL = PROTOCOL + window.location.host
-
-// const csrftoken = DJANGO_CONTEXT.csrf_token;
+import APIService from './APIService'
 
 class AuthService {
   constructor (token, loginpath, logoutpath='') {
@@ -28,33 +23,7 @@ class AuthService {
   }
 
   handleError (error) {
-    let msg
-    switch (error.response.status) {
-      case 400:
-        msg = { type: 401, message: 'Error in form', error: error }
-        break
-      case 401:
-        msg = { type: 401, message: 'Unautorized action', error: error }
-        break
-      case 403:
-        msg = { type: 403, message: 'Prohibido', error: error }
-        break
-      case 405:
-        msg = { type: 405, message: 'Method not allowed', error: error }
-        break
-      case 404:
-        msg = { type: 404, message: 'Not Found', error: error }
-        break
-      case 500:
-        msg = { type: 500, message: 'Error in server', error: error }
-        break
-      case 501:
-        msg = { type: 501, message: 'Not Implemented', error: error }
-        break
-      default:
-        msg = { type: 0, message: 'Unidentified Error', error: error }
-        break
-    }
+    let msg = {status:error.response.status, message: "error" }
     msg.data = error.response.data
     return Promise.reject(msg)
   }

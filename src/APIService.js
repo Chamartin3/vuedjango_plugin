@@ -9,13 +9,11 @@ function checkSlashes (url) {
   if (finalSlash != '/') {
     url = url + '/'
   }
-
   // remove the double final slash
   let finalChars = url.substr(-2)
   if (finalChars.substr(1, 1) === finalChars.substr(0, 1)) {
     url = url.substr(0, url.length - 1)
   }
-
   return url
 }
 

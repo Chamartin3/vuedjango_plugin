@@ -95,10 +95,7 @@ class AuthService {
         done=>{
           var mensaje = done.message
           if (mensaje=="Exito") {
-            // let host = window.location.protocol+"//"+window.location.host
             if (destination) {
-              // console.log("going to"+host+INSIDE_URL)
-              // window.location = BASE_URL+INSIDE_URL
             }
             return  {type:"success", msj:"Ingresando", done:done}
           }else{

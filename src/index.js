@@ -14,8 +14,10 @@ import APIModel from './APIService'
     // on_logout
   // }
   // '_actions': actions
-
 // }
+
+
+
 Vue.prototype.$django = {...DJANGO_CONTEXT}
 
 function asembleURL(pieces, params=[]) {

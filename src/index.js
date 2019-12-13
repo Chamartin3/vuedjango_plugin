@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Auth from './AutenticationService'
 import APIModel from './APIService'
 
-// Recieves a info object
+// Recieves a info object DJANGO_CONTEXT
+Vue.prototype.$django = {...DJANGO_CONTEXT}
 // {
   // 'user'
   // 'csrf_token':
@@ -18,32 +19,6 @@ import APIModel from './APIService'
 
 
 
-Vue.prototype.$django = {...DJANGO_CONTEXT}
-
-function asembleURL(pieces, params=[]) {
-  if (pieces.length===1) return pieces[0]
-  let url =''
-  let paramIndex = 0
-  for (var i = 0; i < pieces.length; i++) {
-    // is a piece of url
-    if (i===0 || i%2===0) {
-      url=url+pieces[i]
-    }else{
-      // is a variable
-      url=url+params[paramIndex]
-      paramIndex++
-    }
-  }
-  return url
-}
-
-function processParams(params) {
-  let param_names=[]
-  for (var i = 0; i < params.length; i++) {
-    param_names.push(params[i].name)
-  }
-  return param_names
-}
 
 
 function generateAPIModels() {

@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import Auth from './Autentication'
 import APIModel from './APIModel'
 

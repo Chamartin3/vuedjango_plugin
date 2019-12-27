@@ -1,5 +1,7 @@
 ## Context Object
 
+
+
 - ##### User
 
   Autehticated user (object) or null if there is an anonymous user

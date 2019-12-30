@@ -46,7 +46,38 @@ user:{
 	}
 ```
 
- 
+#### Auth
 
+this.$django.auth
 
+ Return an object with all the information and variables necessaries to authenticate a user, it has two main methods.
+
+##### Login: 
+
+Used  as **this.$django.auth.login({ user/ password })** 
+
+​	Returns a Promise that is resolved opens a session. It should refresh the browser to update the user object. Its recommended to redirect to a 'on_login' path if defined. 
+
+```javasctript
+$django.auth.login({ username:'jon', password:'super47774' }).then(
+  resolve(done){
+	 window.location = host+'/'+this.$django.autentication.on_login
+  }).catch(
+  //catch error
+  )
+```
+
+##### Logout: 
+
+Used  as **this.$django.auth.logout()** 
+
+Returns a Promise that is resolved closes a session. It should refresh the browser to update the user object. 
+
+```
+$django.auth.logout() // Automatically redirects to on_logout
+```
+
+#### Navigation Paths
+
+Returns an Array of objects, identifying the routes that the Django application serves. This is useful for the usage of Vue router. 
 

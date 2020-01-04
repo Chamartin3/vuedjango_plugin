@@ -152,3 +152,21 @@ $django.auth.logout() // Automatically redirects to on_logout
 
    - delete a Fruit
 
+2. ```javascript
+   methods(){
+   	async deleteFruit(){
+   		// Returns the list
+           let id =  4
+           await this.$django.models.fruit.destroy(id)
+   	}
+   }
+   //calling th list method
+   //[  
+   //	{name: 'apple', id:1},
+   //  {name: 'grapes', id:2},
+   //  {name: 'banana', id:3},
+   //]
+   ```
+
+3. 
+

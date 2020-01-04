@@ -104,7 +104,7 @@ $django.auth.logout() // Automatically redirects to on_logout
      //[  
      //	{name: 'apple', id:1},
      //  {name: 'grapes', id:2},
-     //  {name: 'banana', id:4},
+     //  {name: 'banana', id:3},
      //]
      ```
 
@@ -130,7 +130,25 @@ $django.auth.logout() // Automatically redirects to on_logout
 
    - update a Fruit
 
-   - 
+     ```javascript
+     methods(){
+     	async updateFruit(){
+     		// Returns the list
+             let id =  4
+             await this.$django.models.fruit.update(id,{name:'pear'})
+     	}
+     }
+     //calling th list method
+     //[  
+     //	{name: 'apple', id:1},
+     //  {name: 'grapes', id:2},
+     //  {name: 'banana', id:3},
+     //  {name: 'pear', id:4},
+     //]
+     
+     ```
+
+     
 
    - delete a Fruit
 

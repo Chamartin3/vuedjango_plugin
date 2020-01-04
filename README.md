@@ -83,9 +83,54 @@ $django.auth.logout() // Automatically redirects to on_logout
 
 #### Models
 
-​	Returns a list of Models found in the application, a Model is an endpoint in the  API application that groups several other, each model has a base path and several methods, each method makes a requestto the API following certain specifications, found in the API. The VueDjango Backend transforms each ModelViewSet of ModelView in a model. If the model is based on a ModelViewSet endpoints, the actions are defined in the backend, and will reflect the name of the Viewset method, unless this is edited in the backend. A Django ModelViewSet with no modifications will be represented as a model with its default methods.
+​	Returns a list of Models found in the application, a Model is an endpoint in the  API application that groups several other, each model has a base path and several methods, each method makes a request to the API following certain specifications, found in the API. 
 
-So for example if we have the modelViewset "Fruit" in the backend, we will have a it represented as **this.$django.models.fruit** 
+​	The VueDjango Back end uses Django Rest Framework transforms each ModelViewSet or APIViews in a front end model. If the model is based on a ModelViewSet endpoints, the actions are defined in the back end and will reflect the name of the Viewset method, unless this is edited in the back end.  is is an APIView it will reflect the name given to the endpoint in the router. A Django ModelViewSet with no modifications will be represented as a model with its default methods.
 
-1. 
+​	So, for example if we have the ModelViewset "Fruit" in the back-end, we will have a it represented as **this.$django.models.fruit** and we can access through it to different actions. And each will return a Promise, that on resolve will return  the result.
+
+1. - A list of Fruits
+
+     ```javascript
+     methods(){
+     	async listFruits(){
+     		// Returns the list
+     		let fruits = await this.$django.models.fruit.list()
+     		return fruits
+     	}
+     }
+     
+     //returns
+     //[  
+     //	{name: 'apple', id:1},
+     //  {name: 'grapes', id:2},
+     //  {name: 'banana', id:4},
+     //]
+     ```
+
+   - create a Fruit
+
+     ```javascript
+     methods(){
+     	createFruit(){
+     		// Returns the list
+     		this.$django.models.fruit.create({name:'Pineapple'}).then(res=>{
+                 return res // {name: 'Pineapple', id:4},
+             },fail=>{
+                return fail // Will return a forma error such as
+                 // errors [{'name':'the name shuld be all llowercase' }]
+             }
+             )
+     	}
+     }
+     
+     ```
+
+     
+
+   - update a Fruit
+
+   - 
+
+   - delete a Fruit
 

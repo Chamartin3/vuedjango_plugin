@@ -79,5 +79,13 @@ $django.auth.logout() // Automatically redirects to on_logout
 
 #### Navigation Paths
 
-Returns an Array of objects, identifying the routes that the Django application serves. This is useful for the usage of Vue router. 
+​	Returns an Array of objects, identifying the routes that the Django application serves. This is useful for the usage of Vue router. 
+
+#### Models
+
+​	Returns a list of Models found in the application, a Model is an endpoint in the  API application that groups several other, each model has a base path and several methods, each method makes a requestto the API following certain specifications, found in the API. The VueDjango Backend transforms each ModelViewSet of ModelView in a model. If the model is based on a ModelViewSet endpoints, the actions are defined in the backend, and will reflect the name of the Viewset method, unless this is edited in the backend. A Django ModelViewSet with no modifications will be represented as a model with its default methods.
+
+So for example if we have the modelViewset "Fruit" in the backend, we will have a it represented as **this.$django.models.fruit** 
+
+1. 
 

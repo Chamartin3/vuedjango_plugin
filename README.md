@@ -126,8 +126,6 @@ $django.auth.logout() // Automatically redirects to on_logout
      
      ```
 
-     
-
    - update a Fruit
 
      ```javascript
@@ -138,7 +136,7 @@ $django.auth.logout() // Automatically redirects to on_logout
              await this.$django.models.fruit.update(id,{name:'pear'})
      	}
      }
-     //calling th list method
+     //calling the list method
      //[  
      //	{name: 'apple', id:1},
      //  {name: 'grapes', id:2},
@@ -147,8 +145,6 @@ $django.auth.logout() // Automatically redirects to on_logout
      //]
      
      ```
-
-     
 
    - delete a Fruit
 
@@ -160,7 +156,7 @@ $django.auth.logout() // Automatically redirects to on_logout
            await this.$django.models.fruit.destroy(id)
    	}
    }
-   //calling th list method
+   //calling the list method
    //[  
    //	{name: 'apple', id:1},
    //  {name: 'grapes', id:2},
@@ -168,5 +164,8 @@ $django.auth.logout() // Automatically redirects to on_logout
    //]
    ```
 
-3. 
+#### Custom Actions
 
+The actions can have any name in camelcase the model will represent as an action, what determines the structure of the method is the HTTP method identified in the method. PATCH and GET are actions th require an id as first argument, POST and DELETE does not. But this can change depending of the configuration received by the server
+
+ If the a model has an action that has more than one HTTP method, this will be renames to contain this method, as an example, an endpoint named "detail" can receive both PATCH and GET requests, then the methods will be renamed 'patch_detail' and 'get_detail'.
